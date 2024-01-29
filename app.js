@@ -1,6 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const request = require("request");
+
 const https = require("https");
 require("dotenv").config();
 const app = express();
@@ -9,8 +10,8 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(express.static("assets"));
 //providing path for static files in this case stylesheet for tailwindcss
 
-app.listen(process.env.PORT || 3000, function () {
-  console.log("Server is running on port 3000");
+app.listen(process.env.PORT || 5000, function () {
+  console.log("Server is running on port 5000");
 });
 
 const apiKey = process.env.API_KEY;
@@ -49,6 +50,7 @@ app.post("/", function (req, res) {
   const options = {
     method: "POST",
     auth: "c4dr:" + apiKey,
+    body: jsonData
   };
 
   const request = https.request(url, options, function (response) {
